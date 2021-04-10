@@ -1,49 +1,49 @@
 const express = require('express');
-const campsiteRouter = express.Router();
 
-promotionRouter.route('/promotions')
-    .all((req, res, next) => {
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/plain');
-        next();
-    })
-    .get((req, res) => {
-        res.end('Will send all the promotions to you');
-    })
-    .post((req, res) => {
-        res.end(`Will add the campsite: ${req.body.name} with description: ${req.body.description}`);
-    })
-    .put((req, res) => {
-        res.statusCode = 403;
-        res.end('PUT operation not supported on /promotions');
-    })
-    .delete((req, res) => {
-        res.end('Deleting all promotions');
-    });
+const promotionRouter = express.Router();
 
-campsiteRouter.route('/:campsiteId')
-    .all((req, res, next) => {
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/plain');
-        next();
-    })
+promotionRouter.use(express.json());
 
-    .get((req, res) => {
-        res.end(`Will send details of the campsite: ${req.params.campsiteId} to you`)
-    })
+promotionRouter.route('/')
+.all((req, res, next) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    next();
+})
+.get((req, res) => {
+    res.end('Will send all the promotions to you');
+})
+.post((req, res) => {
+    res.end(`Will add the promotion: ${req.body.name} with description: ${req.body.description}`);
+})
+.put((req, res) => {
+    res.statusCode = 403;
+    res.end('PUT operation not supported on /promotions');
+})
+.delete((req, res) => {
+    res.end('Deleting all promotions');
+}); 
 
-    .post((req, res) => {
-        res.statusCode == 403;
-        res.end(`POST operation not supported on /campsites/${req.params.campsiteId}`)
-    })
+promotionRouter.route('/:promotionId')
+.all((req, res, next) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    next();
+})
+.get((req, res) => {
+    res.end(`Will send details of the promotion: ${req.params.promotionId} to you`);
+})
+.post((req, res) => {
+  res.statusCode = 403;
+    res.end(`POST operation not supported on /promotions/${req.params.promotionId}`);
+})
+.put((req, res) => {
+    res.write(`Updating the promotion: ${req.params.promotionId}\n`);
+    res.end(`Will update the promotion: ${req.body.name}
+        with description: ${req.body.description}`);
+})
+.delete((req, res) => {
+    res.end(`Deleting promotion: ${req.params.promotionId}`);
+});
 
-    .put((req, res) => {
-        res.statusCode = 403;
-        res.end(`PUT operation not supported on /campsites/${req.params.campsiteId}`);
-    })
-    .delete((req, res) => {
-        res.end(`Deleting  /campsites/${req.params.campsiteId}`);
-    });
-
-
-module.exports = campsiteRouter;
+module.exports = promotionRouter;
