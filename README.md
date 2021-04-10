@@ -1,5 +1,3 @@
----
----
 
 # Workshop Week 1
 
