@@ -2,8 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 require('mongoose-currency').loadType(mongoose);
+const Currency = mongoose.Types.Currency;
 
-const PartnerSchema = new Schema({
+const PromotionSchema = new Schema({
     name:{
         type: String,
         required: true,
@@ -17,12 +18,16 @@ const PartnerSchema = new Schema({
         type: Boolean,
         default: false
     },
-    description:{
+    cost:{
+        type: Currency,
+        required: true
+    },
+    description: {
         type: String,
         required: true
     }
 })
 
-const Partner = mongoose.model('Partner', PartnerSchema);
+const Promotion = mongoose.model('Promotion', PromotionSchema);
 
-module.exports = Partner;
+module.exports = Promotion;
