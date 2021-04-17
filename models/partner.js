@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 require('mongoose-currency').loadType(mongoose);
 
 const PartnerSchema = new Schema({
-    name:{
+    name: {
         type: String,
         required: true,
         unique: true
@@ -17,10 +17,12 @@ const PartnerSchema = new Schema({
         type: Boolean,
         default: false
     },
-    description:{
+    description: {
         type: String,
         required: true
     }
+}, {
+    timestamps: true
 })
 
 const Partner = mongoose.model('Partner', PartnerSchema);
