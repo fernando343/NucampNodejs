@@ -14,7 +14,6 @@ const partnerRouter = require("./routes/partnerRouter");
 const mongoose = require("mongoose");
 const url = config.mongoUrl;
 
-// const url = "mongodb://localhost:27017/nucampsite";
 const connect = mongoose.connect(url, {
   useCreateIndex: true,
   useFindAndModify: false,
@@ -28,6 +27,7 @@ connect.then(
 );
 
 var app = express();
+
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
